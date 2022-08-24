@@ -4,12 +4,16 @@ import globalRouter from "./routers/globalRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
 
-const PORT = 7000;
+const PORT = 3000;
 
 const app = express();
 const logger = morgan("dev");
 
-app.set("view engine", "pug");
+app.set("view engine", "ejs");
+app.set("views", process.cwd() + "/src/views");
+app.engine("html", require("ejs").renderFile);
+app.use(express.static(process.cwd() + "/src/public"));
+
 app.use(logger);
 
 app.use("/", globalRouter);
