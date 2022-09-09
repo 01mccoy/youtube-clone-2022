@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+<!--content block-->
+{% block content %}
+<h1>{{video.title}}</h1>
+<h3>{{video.views}} {{"views" if (video.views > 1) else "view"}}</h3>
+<a href="{{video.id}}/edit">Edit Video &rarr;</a>
+{% endblock %}
