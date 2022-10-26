@@ -1,13 +1,29 @@
 {% extends "base.html" %}
 <!--content block-->
 {% block content %}
-<h4>Change Title of video</h4>
+<h4>Update Video</h4>
 <form method="POST">
   <input
     name="title"
     type="text"
     placeholder="Video Title"
     value="{{video.title}}"
+    maxlength="40"
+    required
+  />
+  <input
+    name="description"
+    type="text"
+    placeholder="Description"
+    value="{{video.description}}"
+    maxlength="500"
+    required
+  />
+  <input
+    name="hashtags"
+    type="text"
+    placeholder="Hashtags, separated by comma."
+    value="{{video.hashtags.join(', ')}}"
     required
   />
   <input type="submit" value="Save" />

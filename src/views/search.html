@@ -1,0 +1,18 @@
+{{% extends "base.html" %}}
+<!--macro-->
+{% from "macro/video.html" import videoSet %}
+<!--content block-->
+{% block content %}
+<form action="" method="GET">
+  <input type="text" name="keyword" placeholder="Search by title" />
+  <input type="submit" value="Search now" />
+</form>
+{% for video in videos%}
+<!--macro use-->
+{{videoSet(video)}}
+<!--If there is no video-->
+{% else %}
+<h4>nothing found.</h4>
+{% endfor %}
+<!--end-->
+{% endblock %}

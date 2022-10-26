@@ -1,8 +1,25 @@
 {% extends "base.html" %}
 <!--content block-->
 {% block content %}
+<!--if error-->
+{% if errorMessage %}
+<span>{{errorMessage}}</span>
+{% endif %}
 <form method="POST">
-  <input name="title" type="text" placeholder="Title" required />
+  <input name="title" type="text" placeholder="Title" maxlength="40" required />
+  <input
+    name="description"
+    type="text"
+    placeholder="Description"
+    maxlength="500"
+    required
+  />
+  <input
+    name="hashtags"
+    type="text"
+    placeholder="Hashtags, separated by comma."
+    required
+  />
   <input type="submit" value="Upload Video" />
 </form>
 {% endblock %}
