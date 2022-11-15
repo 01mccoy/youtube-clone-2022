@@ -37,28 +37,10 @@ videoSchema.pre("save", async function () {
 // Video.findByIdAndUpdate() 로 업데이트 되는 데이터는 "save" 를 부르지 않음
 // 업데이트 시에는 findOneAndUpdate 이벤트를 촉발
 videoSchema.pre("findOneAndUpdate", async function () {
-  this._update.hashtags = formatHashTags(this._update.hashtags);
-
-  // 그냥 this.hashtags 를 쓰면 안됨
-  // save 이벤트가 보내주는 this 와 findOneAndUpdate 가 보내주는 this 는 구조가 다름
-  // this(document) 를 얻어오려면 아래와 같이 해야 함
-  // 코드가 매우 길어져서 비추
-  // const docToUpdate = await this.model.findOne(this.getQuery());
-
-  /* 
-  그냥 const hashtags = docToUpdate.hashtags 로 얻어와서 바꾸면
-  hashtags 변수는 read-only 라서 바꿀 수 없다고 나옴.
-  doc 외부로 빠져나온 변수는 변환이 불가능한가봄...
-  그래서 그냥 얻어온 doc 으로 써야 함.
-  */
-
-  // docToUpdate.hashtags = await docToUpdate.hashtags[0]
-  //   .split(",")
-  //   .map((word) => word.trim())
-  //   .map((word) => (word.startsWith("#") ? word : `#${word}`));
-
-  // this.set 으로 세팅 안해주면 로컬 변수만 바뀌는 꼴!
-  //this.set({ hashtags: docToUpdate.hashtags });
+  this._update.hashtags = formatHashTags(Array(this._update.hashtags));
+  // save 이벤트에서의 this.hashtags 는 [""] 형태인데
+  // this._update.hashtags 는 "" 형태임...
+  //? 왜 둘이 형태가 다르지??
 });
 
 const Video = mongoose.model("Video", videoSchema);

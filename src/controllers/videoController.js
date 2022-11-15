@@ -75,11 +75,10 @@ export const postUpload = async (req, res) => {
 export const deleteVideo = async (req, res) => {
   const { id } = req.params;
 
-  const checkDeleteVideo = confirm("Are you sure to delete this video?");
-  if (checkDeleteVideo) {
+  try {
     await Video.findByIdAndDelete(id);
     return res.redirect("/");
-  } else {
+  } catch (error) {
     return res.redirect(`/videos/${id}`);
   }
 };
