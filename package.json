@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/01mccoy/youtube-clone-2022#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "mongoose": "^6.6.1",
