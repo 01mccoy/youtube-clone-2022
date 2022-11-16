@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+<!--content block-->
+{% block content %}
+
+<!--errorMessage-->
+{% if errorMessage %}
+<span>{{errorMessage}}</span>
+{% endif %}
+<form method="POST">
+  <input placeholder="Username" type="text" name="username" required />
+  <input placeholder="Password" type="password" name="password" required />
+  <input type="submit" value="Login" />
+</form>
+
+<hr />
+<div>
+  <span>
+    Don't have an account?
+    <a href="/join">Create one now &rarr;</a>
+  </span>
+</div>
+
+{% endblock %}
